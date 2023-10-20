@@ -6,12 +6,13 @@ interface Props {
 const TechTag = ({ technology }: Props) => {
 
     const style = {
-        backgroundColor: technology.color
+        borderColor: technology.color,
+        color: technology.color
     }
 
     return (
-        <div style={style} className='w-fit rounded-2xl bg-blue-400 p-1.5 flex justify-center items-center'>
-            <p className=' text-white text-sm'>{technology.name}</p>
+        <div style={style} className='w-fit border rounded-2xl p-1.5 flex justify-center items-center'>
+            <p className='text-sm'>{technology.name}</p>
         </div>
     )
 

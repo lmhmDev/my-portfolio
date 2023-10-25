@@ -8,7 +8,7 @@ interface Props {
 
 const ProjectCard = ({ project }: Props) => {
     return (
-        <article className='flex text-background' >
+        <article className='flex text-background'>
             <div className='flex h-[400px] w-[350px] flex-col justify-between rounded-sm bg-white p-2'>
                 <div>
                     <div className='h-[200px] w-full bg-background'>

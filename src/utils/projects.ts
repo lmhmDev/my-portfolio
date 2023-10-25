@@ -4,10 +4,10 @@ import { NextTech, TypescriptTech, TailwindTech, ReactTech } from './constants';
 
 export const projects: Project[] = [
     {
-        imgUrl: '/img/paas.png',
-        name: 'PAAS (Pets As A Service)',
-        description: 'Web App to fetch random dogs and cats pictures (your choice) and store your favorite ones in your browser.',
-        technologies: [ReactTech, TypescriptTech]
+        imgUrl: '/img/task-it.png',
+        name: 'Task it',
+        description: 'Task it is a kanban board that helps you organize your todos between different columns using drag and drop.',
+        technologies: [ReactTech, NextTech, TypescriptTech, TailwindTech]
     },
     {
         imgUrl: '/img/tell-me-more.png',
@@ -16,9 +16,9 @@ export const projects: Project[] = [
         technologies: [ReactTech, NextTech, TypescriptTech, TailwindTech]
     },
     {
-        imgUrl: '/img/task-it.png',
-        name: 'Task it',
-        description: 'Task it is a kanban board that helps you organize your todos between different columns using drag and drop.',
-        technologies: [ReactTech, NextTech, TypescriptTech, TailwindTech]
+        imgUrl: '/img/paas.png',
+        name: 'PAAS (Pets As A Service)',
+        description: 'Web App to fetch random dogs and cats pictures (your choice) and store your favorite ones in your browser.',
+        technologies: [ReactTech, TypescriptTech]
     }
 ]

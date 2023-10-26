@@ -9,3 +9,10 @@ export type technology = {
   name: string
   color: string
 }
+
+export type job = {
+  position: string
+  company: string
+  tasks: string[]
+  date: string
+}

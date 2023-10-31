@@ -4,10 +4,12 @@ import Projects from '@/components/projects'
 
 export default function Home() {
     return (
-        <main>
+        <div className='lg:flex lg:justify-between lg:gap-4'>
             <Header />
-            <Experience />
-            <Projects />
-        </main>
+            <main className='pt-24 lg:w-1/2 lg:py-24'>
+                <Experience />
+                <Projects />
+            </main>
+        </div>
     )
 }

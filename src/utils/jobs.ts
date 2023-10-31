@@ -2,12 +2,14 @@ import { job } from "./types";
 
 export const jobs: job[] = [
     {
-        position: 'Software Engineer Intern',
-        company: 'QIPRO Soluciones',
+        position: 'React Engineer',
+        company: 'Power Bargain',
         tasks: [
-            'Helped develop an automated system for employees to check in/out.'
+            'Worked with the UX/UI team to develop a web app that let users publish their products to different online marketplaces all at once.',
+            'Helped to lead different Freelancers.',
+            'Developed different API endpoint using Firebase Functions and Typescript.'
         ],
-        date: 'feb 2019 - jun 2019'
+        date: 'oct 2021 - oct 2022'
     },
     {
         position: 'Software Engineer Intern',
@@ -19,13 +21,11 @@ export const jobs: job[] = [
         date: 'nov 2019 - jun 2020'
     },
     {
-        position: 'React Engineer',
-        company: 'Power Bargain',
+        position: 'Software Engineer Intern',
+        company: 'QIPRO Soluciones',
         tasks: [
-            'Worked with the UX/UI team to develop a web app that let users publish their products to different online marketplaces all at once.',
-            'Helped to lead different Freelancers.',
-            'Developed different API endpoint using Firebase Functions and Typescript.'
+            'Helped develop an automated system for employees to check in/out.'
         ],
-        date: 'oct 2021 - oct 2022'
+        date: 'feb 2019 - jun 2019'
     }
 ]

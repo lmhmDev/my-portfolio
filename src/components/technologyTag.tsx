@@ -1,18 +1,11 @@
-import { technology } from '../utils/types';
 interface Props {
-    technology: technology
+    technology: string
 }
 
 const TechTag = ({ technology }: Props) => {
-
-    const style = {
-        borderColor: technology.color,
-        color: technology.color
-    }
-
     return (
-        <div style={style} className='w-fit border rounded-2xl p-1.5 flex justify-center items-center'>
-            <p className='text-sm'>{technology.name}</p>
+        <div className='w-fit bg-blue-400 bg-opacity-25 rounded-2xl p-1.5 flex justify-center items-center'>
+            <p className='text-sm text-blue-400'>{technology}</p>
         </div>
     )
 

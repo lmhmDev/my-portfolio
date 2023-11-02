@@ -1,3 +1,4 @@
+import { technologies } from './technologies';
 export type Project = {
   imgUrl: string
   name: string
@@ -5,14 +6,10 @@ export type Project = {
   technologies: string[]
 }
 
-export type technology = {
-  name: string
-  color: string
-}
-
 export type job = {
   position: string
   company: string
-  tasks: string[]
+  description: string
   date: string
+  technologies: string[]
 }

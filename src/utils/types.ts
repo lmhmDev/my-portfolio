@@ -1,4 +1,4 @@
-import { technologies } from './technologies';
+import { technologies } from './technologies'
 export type Project = {
   imgUrl: string
   name: string

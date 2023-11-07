@@ -1,5 +1,4 @@
 import { Project } from './types'
-import { technologies } from './technologies'
 import { NextTech, TypescriptTech, TailwindTech, ReactTech } from './constants'
 
 export const projects: Project[] = [

@@ -2,9 +2,9 @@ const About = () => {
     return (
         <div className='mb-24 mt-2 lg:mb-36 [&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>
             <p>
-                I've always been interested in technology, started creating
-                small games and some joke android apps at home, that's how
-                coding entered my life. Up to the present, I've been lucky to
+                I&#39;ve always been interested in technology, started creating
+                small games and some joke android apps at home, that&#39;s how
+                coding entered my life. Up to the present, I&#39;ve been lucky to
                 work and build software for a{' '}
                 <a
                     className='hover:text-blue-400'
@@ -45,7 +45,7 @@ const About = () => {
                 myself, related and non-related to coding.
             </p>
             <p>
-                When I'm not coding, I'm probably hanging out with my friends,
+                When I&#39;m not coding, I&#39;m probably hanging out with my friends,
                 or playing videogames at home with my{' '}
                 <a
                     className='hover:text-blue-400'

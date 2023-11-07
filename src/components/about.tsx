@@ -1,6 +1,6 @@
 const About = () => {
     return (
-        <div className='mt-2 [&>p]:leading-normal [&>p]:mb-4 [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition lg:mb-36'>
+        <div className='mt-2 [&>p]:leading-normal [&>p]:mb-4 [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition mb-24 lg:mb-36'>
             <p>
                 I've always been interested in technology, started creating small games and some joke android apps at home,
                 that's how coding entered my life. Up to the present,

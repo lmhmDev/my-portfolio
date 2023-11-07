@@ -11,7 +11,7 @@ const Header = () => {
 					I enjoy building stuff that lives on the internet.<br />Passionate about tech and web development.
 				</p>
 			</section>
-			<section className='flex flex-col gap-4 hidden lg:block'>
+			<section className='flex flex-col gap-4 hidden lg:flex'>
 				<a href='' className='group w-fit opacity-50 hover:opacity-100 flex items-center text-sm tracking-widest font-semibold'>
 					<div className='group-hover:w-[5rem] transition-[1s] w-[3rem] h-[1px] bg-white rounded-sm mr-2' />
 					ABOUT
@@ -26,10 +26,10 @@ const Header = () => {
 				</a>
 			</section>
 			<section className='flex gap-2 items-center'>
-				<a href="https://github.com/lmhmDev" className='opacity-50 hover:opacity-100 w-7'>
+				<a href="https://github.com/lmhmDev" className='opacity-50 hover:opacity-100 w-7 transition'>
 					<GithubIcon />
 				</a>
-				<a href="https://www.linkedin.com/in/lorenzo-hermoso/" className='opacity-50 hover:opacity-100 w-10'>
+				<a href="https://www.linkedin.com/in/lorenzo-hermoso/" className='opacity-50 hover:opacity-100 w-10 transition'>
 					<LinkedinIcon />
 				</a>
 			</section>

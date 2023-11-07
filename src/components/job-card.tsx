@@ -7,7 +7,7 @@ interface Props {
 
 const JobCard = ({ job }: Props) => {
     return (
-        <div className='rounded-sm flex gap-2 mb-12 p-4 w-full'>
+        <article className='rounded-sm flex gap-2 mb-12 w-full'>
             <p className='min-w-[25%] text-blue-400 opacity-75 uppercase font-medium text-xs mt-1 tracking-wide'>
                 {job.date}
             </p>
@@ -21,7 +21,7 @@ const JobCard = ({ job }: Props) => {
 
                 </ul>
             </div>
-        </div>
+        </article>
     )
 }
 

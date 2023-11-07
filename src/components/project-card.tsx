@@ -1,6 +1,5 @@
-import { Project, technology } from "@/utils/types"
+import { Project } from "@/utils/types"
 import TechTag from "./technologyTag"
-import { technologies } from '../utils/technologies';
 
 interface Props {
     project: Project
@@ -8,22 +7,18 @@ interface Props {
 
 const ProjectCard = ({ project }: Props) => {
     return (
-        <article className='flex text-background'>
-            <div className='flex h-[400px] w-[350px] flex-col justify-between rounded-sm bg-white p-2'>
-                <div>
-                    <div className='h-[200px] w-full bg-background'>
-                        <img className='h-full object-cover' src={project.imgUrl} alt="" />
-                    </div>
-                    <p className='text-xl my-2'>{`${project.name}`}</p>
-                    <p>{project.description}</p>
-                </div>
-                <div className='flex justify-end'>
-                    {project.technologies.map(technology => {
-                        const tech = technologies.find(tech => tech.name === technology)
-                        if (!tech) return
-                        return <TechTag key={tech.name} technology={tech} />
+        <article className='rounded-sm flex gap-3 mb-12 w-full'>
+            <div className='w-[25%] mt-1'>
+                <img src={project.imgUrl} alt='project image' className='w-full rounded border border-[1px] border-white border-opacity-50' />
+            </div>
+            <div className='w-[75%]'>
+                <p className='leading-tight text-slate-200'>{project.name}</p>
+                <p className='text-sm leading-normal mt-2 mb-4 text-gray-400'>{project.description}</p>
+                <ul className='flex gap-2 flex-wrap'>
+                    {project.technologies.map(tech => {
+                        return <TechTag key={tech} technology={tech} />
                     })}
-                </div>
+                </ul>
             </div>
         </article>
     )

@@ -7,8 +7,8 @@ interface Props {
 
 const JobCard = ({ job }: Props) => {
     return (
-        <article className='mb-12 flex flex-col lg:flex-row w-full gap-2 rounded-sm'>
-            <p className='mb-1 lg:mb-0 mt-1 min-w-[25%] text-xs font-medium uppercase tracking-wide text-blue-400 opacity-75'>
+        <article className='mb-12 flex w-full flex-col gap-2 rounded-sm lg:flex-row'>
+            <p className='mb-1 mt-1 min-w-[25%] text-xs font-medium uppercase tracking-wide text-blue-400 opacity-75 lg:mb-0'>
                 {job.date}
             </p>
             <div className='lg:w-[75%]'>

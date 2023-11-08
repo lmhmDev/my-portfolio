@@ -7,8 +7,8 @@ interface Props {
 
 const ProjectCard = ({ project }: Props) => {
     return (
-        <article className='mb-12 flex flex-col-reverse md:flex-row w-full gap-3 rounded-sm'>
-            <div className='mt-3 md:mt-1 w-[50%] max-w-[300px] md:w-[25%]'>
+        <article className='mb-12 flex w-full flex-col-reverse gap-3 rounded-sm md:flex-row'>
+            <div className='mt-3 w-[50%] max-w-[300px] md:mt-1 md:w-[25%]'>
                 <img
                     src={project.imgUrl}
                     alt='project image'

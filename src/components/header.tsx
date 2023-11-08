@@ -14,29 +14,29 @@ const Header = () => {
                     <br />
                     Passionate about tech and web development.
                 </p>
-            </section>
-            <section className='flex hidden flex-col gap-4 lg:flex'>
-                <a
-                    href=''
-                    className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
-                >
-                    <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
-                    ABOUT
-                </a>
-                <a
-                    href=''
-                    className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
-                >
-                    <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
-                    EXPERIENCE
-                </a>
-                <a
-                    href=''
-                    className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
-                >
-                    <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
-                    PROJECTS
-                </a>
+                <div className='mt-16 flex hidden flex-col gap-4 lg:flex'>
+                    <a
+                        href=''
+                        className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
+                    >
+                        <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
+                        ABOUT
+                    </a>
+                    <a
+                        href=''
+                        className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
+                    >
+                        <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
+                        EXPERIENCE
+                    </a>
+                    <a
+                        href=''
+                        className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
+                    >
+                        <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
+                        PROJECTS
+                    </a>
+                </div>
             </section>
             <section className='flex items-center gap-2'>
                 <a

@@ -7,15 +7,15 @@ interface Props {
 
 const ProjectCard = ({ project }: Props) => {
     return (
-        <article className='mb-12 flex w-full gap-3 rounded-sm'>
-            <div className='mt-1 w-[25%]'>
+        <article className='mb-12 flex flex-col-reverse md:flex-row w-full gap-3 rounded-sm'>
+            <div className='mt-3 md:mt-1 w-[50%] max-w-[300px] md:w-[25%]'>
                 <img
                     src={project.imgUrl}
                     alt='project image'
                     className='w-full rounded border border-[1px] border-white border-opacity-50'
                 />
             </div>
-            <div className='w-[75%]'>
+            <div className='w-full md:w-[75%]'>
                 <p className='leading-tight text-slate-200'>{project.name}</p>
                 <p className='mb-4 mt-2 text-sm leading-normal text-gray-400'>
                     {project.description}

@@ -16,21 +16,21 @@ const Header = () => {
                 </p>
                 <div className='mt-16 flex hidden flex-col gap-4 lg:flex'>
                     <a
-                        href=''
+                        href='/#about'
                         className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
                     >
                         <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
                         ABOUT
                     </a>
                     <a
-                        href=''
+                        href='/#experience'
                         className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
                     >
                         <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />
                         EXPERIENCE
                     </a>
                     <a
-                        href=''
+                        href='/#projects'
                         className='group flex w-fit items-center text-sm font-semibold tracking-widest opacity-50 hover:opacity-100'
                     >
                         <div className='mr-2 h-[1px] w-[3rem] rounded-sm bg-white transition-[1s] group-hover:w-[5rem]' />

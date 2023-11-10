@@ -20,24 +20,28 @@ export default function Home() {
 
     const [activeSection, setActiveSection] = useState<string | null>(null);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            for (const sectionName in sectionRefs) {
+    const handleScroll = () => {
+        for (const sectionName in sectionRefs) {
 
-                const sectionRef = sectionRefs[sectionName].current;
+            const sectionRef = sectionRefs[sectionName].current;
 
-                if (sectionRef && sectionRef instanceof HTMLElement) {
-                    const boundingBox = sectionRef.getBoundingClientRect();
-                    const isInSection = boundingBox.top >= 0 && boundingBox.bottom <= window.innerHeight;
+            if (sectionRef && sectionRef instanceof HTMLElement) {
+                const boundingBox = sectionRef.getBoundingClientRect();
+                const isInSection = boundingBox.top >= 0 && boundingBox.bottom <= window.innerHeight;
 
-                    if (isInSection) {
-                        setActiveSection(sectionName);
-                        break;
-                    }
+                if (isInSection) {
+                    setActiveSection(sectionName);
+                    break;
                 }
             }
-
         }
+
+    }
+    useEffect(() => {
+        handleScroll()
+    }, [])
+    useEffect(() => {
+
         window.addEventListener('scroll', handleScroll);
 
 

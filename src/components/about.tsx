@@ -7,7 +7,7 @@ interface Props {
 const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (props, ref) => {
 
     return (
-        <section className='mb-24 mt-2 scroll-mt-24 lg:mb-36' id='about' ref={ref}>
+        <section className='mb-24 mt-2 scroll-mt-36 lg:mb-36' id='about' ref={ref}>
             <p className='mb-10 text-xl text-white lg:hidden'>About</p>
             <div className='[&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>
                 <p>

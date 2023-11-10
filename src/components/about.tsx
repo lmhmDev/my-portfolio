@@ -1,6 +1,13 @@
-const About = () => {
+import { forwardRef, RefObject, useEffect, useImperativeHandle, useRef } from 'react';
+
+interface Props {
+
+}
+
+const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (props, ref) => {
+
     return (
-        <div className='mb-24 mt-2 scroll-mt-24 lg:mb-36' id='about'>
+        <section className='mb-24 mt-2 scroll-mt-24 lg:mb-36' id='about' ref={ref}>
             <p className='mb-10 text-xl text-white lg:hidden'>About</p>
             <div className='[&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>
                 <p>
@@ -60,8 +67,8 @@ const About = () => {
                     (they just look).
                 </p>
             </div>
-        </div>
+        </section >
     )
 }
 
-export default About
+export default forwardRef(About)

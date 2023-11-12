@@ -3,11 +3,13 @@ import TechTag from './technologyTag'
 
 interface Props {
     job: job
+    isActive: boolean | null
+    setActive: (active: string) => void
 }
 
-const JobCard = ({ job }: Props) => {
+const JobCard = ({ job, isActive, setActive }: Props) => {
     return (
-        <article className='mb-12 flex w-full flex-col gap-2 rounded-sm lg:flex-row'>
+        <article onMouseEnter={() => setActive(job.company)} className={`mb-12 flex w-full flex-col gap-2 rounded-sm lg:flex-row p-3 transition ${isActive !== null ? isActive ? ' bg-gray-400 rounded-md backdrop-filter backdrop-blur-3xl bg-opacity-10' : 'opacity-50' : ''}`}>
             <p className='mb-1 mt-[0.22rem] min-w-[25%] text-xs font-medium uppercase tracking-wide text-blue-400 opacity-75 lg:mb-0'>
                 {job.date}
             </p>

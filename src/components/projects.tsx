@@ -11,9 +11,11 @@ const Projects: React.ForwardRefRenderFunction<HTMLElement, Props> = (props, ref
         <section className='h-fit w-full scroll-mt-28' id='projects' ref={ref}>
             <div className='flex flex-col items-start justify-center'>
                 <p className='mb-10 text-xl lg:hidden'>Projects</p>
-                {projects.map((project) => {
-                    return <ProjectCard key={project.name} project={project} />
-                })}
+                <div className='group/list'>
+                    {projects.map((project) => {
+                        return <ProjectCard key={project.name} project={project} />
+                    })}
+                </div>
             </div>
         </section>
     )

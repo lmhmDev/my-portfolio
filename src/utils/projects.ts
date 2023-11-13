@@ -3,6 +3,7 @@ import { NextTech, TypescriptTech, TailwindTech, ReactTech } from './constants'
 
 export const projects: Project[] = [
     {
+        url: 'https://task-it-seven.vercel.app/',
         imgUrl: '/img/task-it.png',
         name: 'Task it',
         description:
@@ -10,6 +11,7 @@ export const projects: Project[] = [
         technologies: [ReactTech, NextTech, TypescriptTech, TailwindTech],
     },
     {
+        url: 'https://tell-me-more-eta.vercel.app/',
         imgUrl: '/img/tell-me-more.png',
         name: 'Tell me more',
         description:
@@ -17,6 +19,7 @@ export const projects: Project[] = [
         technologies: [ReactTech, NextTech, TypescriptTech, TailwindTech],
     },
     {
+        url: 'https://paas-three.vercel.app/',
         imgUrl: '/img/paas.png',
         name: 'PAAS (Pets As A Service)',
         description:

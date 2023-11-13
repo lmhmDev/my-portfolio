@@ -1,4 +1,5 @@
 export type Project = {
+    url: string
     imgUrl: string
     name: string
     description: string

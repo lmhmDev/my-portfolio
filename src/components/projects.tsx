@@ -8,7 +8,7 @@ interface Props {
 
 const Projects: React.ForwardRefRenderFunction<HTMLElement, Props> = (props, ref) => {
     return (
-        <section className='h-fit w-full' id='projects' ref={ref}>
+        <section className='h-fit w-full scroll-mt-28' id='projects' ref={ref}>
             <div className='flex flex-col items-start justify-center'>
                 <p className='mb-10 text-xl lg:hidden'>Projects</p>
                 {projects.map((project) => {

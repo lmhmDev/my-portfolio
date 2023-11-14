@@ -29,7 +29,6 @@ const Header = ({ activeSection }: Props) => {
                 <div className='mt-16 flex hidden flex-col gap-4 lg:flex'>
                     <a
                         href='/#about'
-                        target='_blank'
                         className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${activeSection === sections.about ? 'opacity-100' : 'opacity-50'} hover:opacity-100`}
                     >
                         <div className={`mr-2 h-[1px] rounded-sm bg-white transition-[1s] ${activeSection === sections.about ? 'w-[5rem]' : 'w-[3rem]'} group-hover:w-[5rem]`} />
@@ -37,7 +36,6 @@ const Header = ({ activeSection }: Props) => {
                     </a>
                     <a
                         href='/#experience'
-                        target='_blank'
                         className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${activeSection === sections.experience ? 'opacity-100' : 'opacity-50'} hover:opacity-100`}
                     >
                         <div className={`mr-2 h-[1px]  rounded-sm bg-white transition-[1s] ${activeSection === sections.experience ? 'w-[5rem]' : 'w-[3rem]'} group-hover:w-[5rem]`} />
@@ -45,7 +43,6 @@ const Header = ({ activeSection }: Props) => {
                     </a>
                     <a
                         href='/#projects'
-                        target='_blank'
                         className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${activeSection === sections.projects ? 'opacity-100' : 'opacity-50'} hover:opacity-100`}
                     >
                         <div className={`mr-2 h-[1px] rounded-sm bg-white transition-[1s] ${activeSection === sections.projects ? 'w-[5rem]' : 'w-[3rem]'} group-hover:w-[5rem]`} />

@@ -6,7 +6,7 @@ import {
     useRef,
 } from 'react'
 
-interface Props {}
+interface Props { }
 
 const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
     props,
@@ -14,14 +14,14 @@ const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
 ) => {
     return (
         <section
-            className='mb-24 mt-2 scroll-mt-36 lg:mb-36'
+            className='pb-24 mt-2 scroll-mt-36 lg:mb-36'
             id='about'
             ref={ref}
         >
-            <p className='sticky top-0 mb-10 bg-background/90 py-4 text-xl text-white lg:hidden'>
+            <p className='sticky top-0 bg-background/90 py-4 text-xl text-white lg:hidden'>
                 About
             </p>
-            <div className='[&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>
+            <div className='mt-10 lg:mt-0 [&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>
                 <p>
                     I&#39;ve always been interested in technology, started
                     creating small games and some joke android apps at home,

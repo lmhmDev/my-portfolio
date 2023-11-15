@@ -11,7 +11,7 @@ const JobCard = ({ job }: Props) => {
             <p className='z-10 mb-1 mt-[0.22rem] min-w-[25%] text-xs font-medium uppercase tracking-wide text-blue-400 opacity-75 lg:mb-0'>
                 {job.date}
             </p>
-            <div className='lg:w-[75%] z-10'>
+            <div className='z-10 lg:w-[75%]'>
                 <p className='leading-tight text-slate-200'>
                     {job.position} · {job.company}
                 </p>

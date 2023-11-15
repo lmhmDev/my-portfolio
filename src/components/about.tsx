@@ -1,14 +1,26 @@
-import { forwardRef, RefObject, useEffect, useImperativeHandle, useRef } from 'react';
+import {
+    forwardRef,
+    RefObject,
+    useEffect,
+    useImperativeHandle,
+    useRef,
+} from 'react'
 
-interface Props {
+interface Props {}
 
-}
-
-const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (props, ref) => {
-
+const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
+    props,
+    ref
+) => {
     return (
-        <section className='mb-24 mt-2 scroll-mt-36 lg:mb-36' id='about' ref={ref}>
-            <p className='mb-10 text-xl text-white lg:hidden'>About</p>
+        <section
+            className='mb-24 mt-2 scroll-mt-36 lg:mb-36'
+            id='about'
+            ref={ref}
+        >
+            <p className='sticky top-0 mb-10 bg-background/90 py-4 text-xl text-white lg:hidden'>
+                About
+            </p>
             <div className='[&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>
                 <p>
                     I&#39;ve always been interested in technology, started
@@ -67,7 +79,7 @@ const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (props, ref) =
                     (they just look).
                 </p>
             </div>
-        </section >
+        </section>
     )
 }
 

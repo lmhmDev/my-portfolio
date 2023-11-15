@@ -18,7 +18,7 @@ const ProjectCard = ({ project }: Props) => {
                 />
             </div>
             <div className='w-full md:w-[75%] z-10'>
-                <p className='leading-tight text-slate-200'>{project.name}</p>
+                <p className='leading-tight text-slate-200 lg:group-hover:text-blue-400 lg:group-hover:-translate-y-[2px] transition'>{project.name}</p>
                 <p className='mb-4 mt-2 text-sm leading-normal text-gray-400'>
                     {project.description}
                 </p>

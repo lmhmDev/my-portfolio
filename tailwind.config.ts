@@ -12,6 +12,15 @@ const config: Config = {
                 background: '#21252b',
                 textColor: '#EDEDED',
             },
+            animation: {
+                bgAnimation: 'bgAnimation 150s linear infinite',
+            },
+            keyframes: {
+                bgAnimation: {
+                    from: { 'background-position-y': '0%' },
+                    to: { 'background-position-y': '1603px' },
+                },
+            },
         },
     },
     plugins: [],

@@ -6,7 +6,7 @@ import {
     useRef,
 } from 'react'
 
-interface Props { }
+interface Props {}
 
 const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
     props,
@@ -18,7 +18,7 @@ const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
             id='about'
             ref={ref}
         >
-            <p className='sticky z-40 top-0 bg-background/90 py-4 text-xl text-white lg:hidden'>
+            <p className='sticky top-0 z-40 bg-background/90 py-4 text-xl text-white lg:hidden'>
                 About
             </p>
             <div className='relative z-30 mt-10 lg:mt-0 [&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>

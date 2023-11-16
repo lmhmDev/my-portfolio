@@ -1,5 +1,7 @@
 import { jobs } from '@/utils/jobs'
+import Link from 'next/link'
 import { ForwardedRef, forwardRef, useState } from 'react'
+import ArrowIcon from './icons/arrow-icon'
 import JobCard from './job-card'
 
 interface Props {}
@@ -27,6 +29,17 @@ const Experience: React.ForwardRefRenderFunction<HTMLElement, Props> = (
                     })}
                 </div>
             </div>
+            <a
+                href='/files/CV_Lorenzo_Hermoso_EN.pdf'
+                className='group/link relative z-10 flex w-fit'
+                target='_blank'
+                rel='noopener noreferrer'
+            >
+                <span className='border-b-2 border-blue-400 border-opacity-0 transition-[border] group-hover/link:border-opacity-100'>
+                    View Full résumé
+                </span>
+                <ArrowIcon />
+            </a>
         </section>
     )
 }

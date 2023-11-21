@@ -27,52 +27,46 @@ const Header = ({ activeSection }: Props) => {
                 <div className='mt-16 flex hidden flex-col gap-4 lg:flex'>
                     <a
                         href='/#about'
-                        className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${
-                            activeSection === sections.about
+                        className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${activeSection === sections.about
                                 ? 'opacity-100'
                                 : 'opacity-50'
-                        } hover:opacity-100`}
+                            } hover:opacity-100`}
                     >
                         <div
-                            className={`mr-2 h-[1px] rounded-sm bg-white transition-[1s] ${
-                                activeSection === sections.about
+                            className={`mr-2 h-[1px] rounded-sm bg-white transition-[1s] ${activeSection === sections.about
                                     ? 'w-[5rem]'
                                     : 'w-[3rem]'
-                            } group-hover:w-[5rem]`}
+                                } group-hover:w-[5rem]`}
                         />
                         ABOUT
                     </a>
                     <a
                         href='/#experience'
-                        className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${
-                            activeSection === sections.experience
+                        className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${activeSection === sections.experience
                                 ? 'opacity-100'
                                 : 'opacity-50'
-                        } hover:opacity-100`}
+                            } hover:opacity-100`}
                     >
                         <div
-                            className={`mr-2 h-[1px]  rounded-sm bg-white transition-[1s] ${
-                                activeSection === sections.experience
+                            className={`mr-2 h-[1px]  rounded-sm bg-white transition-[1s] ${activeSection === sections.experience
                                     ? 'w-[5rem]'
                                     : 'w-[3rem]'
-                            } group-hover:w-[5rem]`}
+                                } group-hover:w-[5rem]`}
                         />
                         EXPERIENCE
                     </a>
                     <a
                         href='/#projects'
-                        className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${
-                            activeSection === sections.projects
+                        className={`group flex w-fit items-center text-sm font-semibold tracking-widest ${activeSection === sections.projects
                                 ? 'opacity-100'
                                 : 'opacity-50'
-                        } hover:opacity-100`}
+                            } hover:opacity-100`}
                     >
                         <div
-                            className={`mr-2 h-[1px] rounded-sm bg-white transition-[1s] ${
-                                activeSection === sections.projects
+                            className={`mr-2 h-[1px] rounded-sm bg-white transition-[1s] ${activeSection === sections.projects
                                     ? 'w-[5rem]'
                                     : 'w-[3rem]'
-                            } group-hover:w-[5rem]`}
+                                } group-hover:w-[5rem]`}
                         />
                         PROJECTS
                     </a>
@@ -82,12 +76,14 @@ const Header = ({ activeSection }: Props) => {
                 <a
                     href='https://github.com/lmhmDev'
                     className='w-7 opacity-50 transition hover:opacity-100'
+                    target='_blank'
                 >
                     <GithubIcon />
                 </a>
                 <a
                     href='https://www.linkedin.com/in/lorenzo-hermoso/'
                     className='w-10 opacity-50 transition hover:opacity-100'
+                    target='_blank'
                 >
                     <LinkedinIcon />
                 </a>

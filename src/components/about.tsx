@@ -6,7 +6,7 @@ import {
     useRef,
 } from 'react'
 
-interface Props {}
+interface Props { }
 
 const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
     props,
@@ -55,28 +55,13 @@ const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
                 <p>
                     Although I started my career focused in mobile develpoment,
                     I quickly transitioned to fullstack web dev, and finally
-                    ended in{' '}
-                    <a
-                        className='hover:text-blue-400'
-                        href='https://en.wikipedia.org/wiki/Front-end_web_development'
-                        target='_blank'
-                    >
-                        Frontend development
-                    </a>
-                    . Nowadays my main concern is becoming the best version of
+                    ended in <span className='text-slate-100'>Frontend development</span> . Nowadays my main concern is becoming the best version of
                     myself, related and non-related to coding.
                 </p>
                 <p>
                     When I&#39;m not coding, I&#39;m probably hanging out with
-                    my friends, or playing videogames at home with my{' '}
-                    <a
-                        className='hover:text-blue-400'
-                        href='https://dictionary.cambridge.org/dictionary/english/cat'
-                        target='_blank'
-                    >
-                        2 cats
-                    </a>{' '}
-                    (they just look).
+                    my friends, or playing videogames at home with
+                    my <span className='text-slate-100'>2 cats</span> (they just look).
                 </p>
             </div>
         </section>

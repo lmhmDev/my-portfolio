@@ -18,7 +18,7 @@ const ProjectCard = ({ project }: Props) => {
                 <img
                     src={project.imgUrl}
                     alt='project image'
-                    className='w-[400px] rounded border border-[1px] border-white border-opacity-50'
+                    className='w-[] rounded border border-[1px] border-white border-opacity-50'
                 />
             </div>
             <div className='z-10 w-full md:w-[75%]'>

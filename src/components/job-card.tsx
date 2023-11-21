@@ -20,11 +20,7 @@ const JobCard = ({ job }: Props) => {
                 </p>
                 <ul className='flex flex-wrap gap-2'>
                     {job.technologies.map((tech) => {
-                        return (
-                            <li key={tech}>
-                                <TechTag technology={tech} />
-                            </li>
-                        )
+                        return <TechTag technology={tech} key={tech} />
                     })}
                 </ul>
             </div>

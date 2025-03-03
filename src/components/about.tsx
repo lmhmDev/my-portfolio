@@ -21,43 +21,20 @@ const About: React.ForwardRefRenderFunction<HTMLElement, Props> = (
             <p className='sticky top-0 z-40 bg-background/90 py-4 text-xl text-white lg:hidden'>
                 About
             </p>
-            <div className='relative z-30 mt-10 lg:mt-0 [&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:text-slate-100 [&_a]:transition'>
+            <div className='relative z-30 mt-10 lg:mt-0 [&>p]:mb-4 [&>p]:leading-normal [&>p]:text-gray-400 [&_a]:transition [&_span]:text-slate-100'>
                 <p>
                     I&#39;ve always been interested in technology, started
                     creating small games and some joke android apps at home,
                     that&#39;s how coding entered my life. Up to the present,
                     I&#39;ve been lucky to work and build software for a{' '}
-                    <a
-                        className='hover:text-blue-400'
-                        href='https://qiproaccenture.negocio.site/?utm_source=gmb&utm_medium=referral'
-                        target='_blank'
-                    >
-                        big corporation
-                    </a>
-                    , a{' '}
-                    <a
-                        className='hover:text-blue-400'
-                        href='https://rocketfy.es/'
-                        target='_blank'
-                    >
-                        small software company
-                    </a>{' '}
-                    and a{' '}
-                    <a
-                        className='hover:text-blue-400'
-                        href='https://es.linkedin.com/company/power-bargain'
-                        target='_blank'
-                    >
-                        start-up
-                    </a>
-                    .
+                    <span>big corporation</span>, a{' '}
+                    <span>small software company</span> and a couple{' '}
+                    <span>start-ups</span> .
                 </p>
                 <p>
                     Although I started my career focused in mobile develpoment,
-                    I quickly transitioned to fullstack web dev, and finally
-                    ended in{' '}
-                    <span className='text-slate-100'>Frontend development</span>{' '}
-                    . Nowadays my main concern is becoming the best version of
+                    I quickly transitioned to <span>Fullstack web dev.</span>{' '}
+                    Nowadays my main concern is becoming the best version of
                     myself, related and non-related to coding.
                 </p>
                 <p>

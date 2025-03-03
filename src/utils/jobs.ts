@@ -10,9 +10,53 @@ import {
     LaravelTech,
     JavascriptTech,
     FlutterTech,
+    PhpTech,
+    NodeTech,
+    ExpressTech,
+    MysqlTech,
+    MongoTech,
+    ReactNativeTech,
 } from './constants'
 
 export const jobs: job[] = [
+    {
+        position: 'Development Manager',
+        company: 'Renterus',
+        description:
+            'Leading and actively developing for mobile and web applications, I focus on system architecture and hands-on coding, ensuring the delivery of robust, scalable solutions. I steer both our in-house and freelance developers across various project sections, integrating cohesive and innovative development practices.',
+        date: 'apr 2024 - present',
+        technologies: [
+            ReactTech,
+            NextTech,
+            ReactNativeTech,
+            TypescriptTech,
+            JavascriptTech,
+            NodeTech,
+            ExpressTech,
+            MongoTech,
+            MysqlTech,
+            PhpTech,
+        ],
+    },
+    {
+        position: 'Full Stack Developer',
+        company: 'Renterus',
+        description:
+            'Mobile app development and deployment using React Native. Design and development of microservices arquitecture backend using Nodejs and PHP. Database management (MongoDB and MySQL). Migrating web project from php to Nextjs.',
+        date: 'Jan 2023 - Apr 2024',
+        technologies: [
+            ReactTech,
+            NextTech,
+            ReactNativeTech,
+            TypescriptTech,
+            JavascriptTech,
+            NodeTech,
+            ExpressTech,
+            MongoTech,
+            MysqlTech,
+            PhpTech,
+        ],
+    },
     {
         position: 'React Engineer',
         company: 'Power Bargain',

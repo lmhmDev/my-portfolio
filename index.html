@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Lorenzo Hermoso. Hago cosas con ordenadores.">
+  <meta name="theme-color" content="#f3eee2">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>Lorenzo Hermoso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=IBM+Plex+Mono:ital,wght@0,400;1,400&display=swap">
+  <style>
+    :root {
+      --cream: #f3eee2;
+      --cream-deep: #e6dfcd;
+      --ink: #17181f;
+      --ink-dim: rgba(23, 24, 31, 0.6);
+      --ink-faint: rgba(23, 24, 31, 0.38);
+      --accent: #b8501c;
+      --display: "Syne", "Arial Black", "Helvetica Neue", sans-serif;
+      --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--mono);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      color-scheme: light;
+    }
+    #stage {
+      position: fixed; inset: 0;
+      width: 100vw; height: 100vh; height: 100dvh;
+      background:
+        radial-gradient(110% 80% at 50% 45%, rgba(255, 252, 245, 0.9) 0%, rgba(243, 238, 226, 0) 60%),
+        linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    }
+    #stage canvas { display: block; width: 100%; height: 100%; }
+  
+    .ui {
+      position: fixed; inset: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: clamp(18px, 3vw, 36px) clamp(20px, 4vw, 48px);
+      padding-bottom: max(clamp(18px, 3vw, 36px), env(safe-area-inset-bottom));
+      box-sizing: border-box;
+      pointer-events: none;
+      height: 100vh; height: 100dvh;
+    }
+    .top { grid-row: 1; }
+    .center { grid-row: 2; }
+    .bottom { grid-row: 3; }
+    .top, .bottom {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .top { opacity: 0; animation: rise 1.2s 1.6s ease-out forwards; }
+    .bottom { opacity: 0; animation: rise 1.2s 1.9s ease-out forwards; }
+  
+    .center {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: clamp(10px, 2vh, 22px);
+      min-height: 0;
+    }
+    h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 9.5vw, 7.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+      color: var(--ink);
+      opacity: 0; transform: translateY(14px);
+      animation: rise 1.4s 0.9s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    h1 .thin { color: var(--ink-dim); }
+    .links { display: flex; gap: 22px; pointer-events: auto; }
+    .links a {
+      color: var(--ink-faint); text-decoration: none;
+      padding-bottom: 2px; border-bottom: 1px solid transparent;
+      transition: color .25s, border-color .25s;
+    }
+    .links a:hover, .links a:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+    @media (max-width: 600px) {
+      .top { visibility: hidden; }   /* mantiene su fila para que el nombre siga centrado */
+    }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .top, .bottom, h1 { animation: none; opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="stage"></div>
+
+<div class="ui">
+  <div class="top">
+    <span>Lorenzo Hermoso</span>
+    <span id="clock" aria-hidden="true"></span>
+  </div>
+  <div class="center">
+    <h1>Lorenzo<br><span class="thin">Hermoso</span></h1>
+  </div>
+  <div class="bottom">
+    <nav class="links" aria-label="Enlaces">
+      <a href="https://github.com/lmhmDev" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/lorenzo-hermoso/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Reloj ---------- */
+  var clockEl = document.getElementById('clock');
+  function clock() {
+    var d = new Date();
+    var h = String(d.getHours()).padStart(2, '0'), m = String(d.getMinutes()).padStart(2, '0');
+    clockEl.textContent = h + ':' + m;
+  }
+  clock(); setInterval(clock, 15000);
+
+  /* ---------- Partículas ---------- */
+  if (!window.THREE) return;
+  var stage = document.getElementById('stage');
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' });
+  } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+  stage.appendChild(renderer.domElement);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+
+  var COUNT = (window.innerWidth < 700 ? 18000 : 36000);
+  var TAU = Math.PI * 2;
+
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  /* ---------- Formas: siluetas dibujadas en canvas y muestreadas a puntos.
+     Una versión desenfocada de la misma silueta da el grosor: cuanto más
+     interior es un píxel, más profundidad en z, así queda mullido. ---------- */
+  function silhouette(draw) {
+    var S = 440, c = document.createElement('canvas'); c.width = S; c.height = S;
+    var ctx = c.getContext('2d');
+    function paint(g) {
+      g.fillStyle = '#000'; g.strokeStyle = '#000'; g.lineCap = 'round'; g.lineJoin = 'round';
+      draw(g);
+      g.globalCompositeOperation = 'source-over';
+    }
+    paint(ctx);
+    var mask = ctx.getImageData(0, 0, S, S).data, depth = null;
+    try {
+      var b = document.createElement('canvas'); b.width = S; b.height = S;
+      var bctx = b.getContext('2d');
+      if ('filter' in bctx) { bctx.filter = 'blur(14px)'; paint(bctx); depth = bctx.getImageData(0, 0, S, S).data; }
+    } catch (e) { depth = null; }
+    var pts = [];
+    for (var y = 0; y < S; y += 2) for (var x = 0; x < S; x += 2) {
+      var k = (y * S + x) * 4 + 3;
+      if (mask[k] > 120) pts.push(x, y, depth ? depth[k] / 255 : 0.5);
+    }
+    var arr = new Float32Array(COUNT * 3), n = pts.length / 3, scale = 4.3 / S;
+    for (var i = 0; i < COUNT; i++) {
+      var j = Math.floor(Math.random() * n) * 3, d = pts[j + 2];
+      arr[i * 3] = (pts[j] - S / 2 + rnd(-1, 1)) * scale;
+      arr[i * 3 + 1] = -(pts[j + 1] - S / 2 + rnd(-1, 1)) * scale + 0.1;
+      arr[i * 3 + 2] = rnd(-1, 1) * (0.05 + Math.sqrt(d) * 0.55);
+    }
+    return arr;
+  }
+  function roundRect(g, x, y, w, h, r) {
+    g.beginPath();
+    g.moveTo(x + r, y); g.lineTo(x + w - r, y); g.quadraticCurveTo(x + w, y, x + w, y + r);
+    g.lineTo(x + w, y + h - r); g.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    g.lineTo(x + r, y + h); g.quadraticCurveTo(x, y + h, x, y + h - r);
+    g.lineTo(x, y + r); g.quadraticCurveTo(x, y, x + r, y); g.closePath();
+  }
+
+  /* Gato sentado, cola enroscada, ojos en hueco */
+  function cat() {
+    return silhouette(function (g) {
+      g.lineWidth = 26; g.beginPath();
+      g.moveTo(232, 392); g.quadraticCurveTo(330, 405, 352, 330); g.quadraticCurveTo(366, 282, 336, 252); g.stroke();
+      g.beginPath(); g.ellipse(212, 300, 96, 112, 0, 0, TAU); g.fill();
+      g.beginPath(); g.ellipse(212, 214, 62, 58, 0, 0, TAU); g.fill();
+      g.beginPath(); g.ellipse(178, 400, 30, 15, 0, 0, TAU); g.fill();
+      g.beginPath(); g.ellipse(244, 400, 30, 15, 0, 0, TAU); g.fill();
+      g.beginPath(); g.ellipse(212, 148, 66, 60, 0, 0, TAU); g.fill();
+      g.beginPath(); g.moveTo(158, 118); g.lineTo(150, 52); g.lineTo(206, 92); g.closePath(); g.fill();
+      g.beginPath(); g.moveTo(266, 118); g.lineTo(274, 52); g.lineTo(218, 92); g.closePath(); g.fill();
+      g.globalCompositeOperation = 'destination-out';
+      g.beginPath(); g.ellipse(186, 146, 12, 7, -0.25, 0, TAU); g.fill();
+      g.beginPath(); g.ellipse(238, 146, 12, 7, 0.25, 0, TAU); g.fill();
+    });
+  }
+
+  /* Portátil de frente: pantalla con marco, un prompt parpadeando dentro, y la base */
+  function laptop() {
+    return silhouette(function (g) {
+      roundRect(g, 70, 70, 300, 210, 18); g.fill();               // tapa
+      g.globalCompositeOperation = 'destination-out';
+      roundRect(g, 90, 88, 260, 172, 8); g.fill();                // pantalla en hueco
+      g.globalCompositeOperation = 'source-over';
+      g.lineWidth = 12;                                            // prompt >_
+      g.beginPath(); g.moveTo(118, 118); g.lineTo(146, 140); g.lineTo(118, 162); g.stroke();
+      g.beginPath(); g.moveTo(166, 164); g.lineTo(206, 164); g.stroke();
+      roundRect(g, 40, 292, 360, 30, 12); g.fill();               // base
+      g.globalCompositeOperation = 'destination-out';
+      roundRect(g, 180, 300, 80, 12, 6); g.fill();                // muesca / trackpad
+    });
+  }
+
+  /* Porción de pizza: triángulo con corteza en banda y pepperoni en hueco */
+  function pizza() {
+    return silhouette(function (g) {
+      g.beginPath();
+      g.moveTo(220, 400); g.lineTo(70, 90); g.quadraticCurveTo(220, 20, 370, 90); g.closePath(); g.fill();
+      g.beginPath();                                               // corteza: banda entre dos curvas
+      g.moveTo(70, 90); g.quadraticCurveTo(220, 20, 370, 90);
+      g.lineTo(352, 128); g.quadraticCurveTo(220, 66, 88, 128); g.closePath(); g.fill();
+      g.globalCompositeOperation = 'destination-out';
+      [[165, 170, 20], [270, 165, 19], [218, 240, 23], [196, 300, 13], [246, 302, 13]].forEach(function (p) {
+        g.beginPath(); g.arc(p[0], p[1], p[2], 0, TAU); g.fill();
+      });
+    });
+  }
+  var kinds = [cat, laptop, pizza];
+  var base = kinds.map(function (f) { return f(); });   // cada una centrada, ~4.3 unidades de alto
+
+  /* ---------- Huecos por el fondo (coordenadas normalizadas -1..1, evitando el nombre) ---------- */
+  var NSLOTS = 6;
+  var layout = [
+    [-0.80, 0.62], [0.78, 0.66], [-0.82, -0.52], [0.80, -0.48],
+    [0.02, 0.84], [-0.16, -0.84]
+  ];
+  var PER = Math.floor(COUNT / NSLOTS);
+  var slots = [];
+  for (var i = 0; i < NSLOTS; i++) {
+    slots.push({ kind: i % kinds.length, s: 0.3, x: 0, y: 0, morphing: false, start: 0, hold: 0, center: new THREE.Vector3() });
+  }
+
+  var rand = new Float32Array(COUNT), slotAttr = new Float32Array(COUNT);
+  for (var i = 0; i < COUNT; i++) { rand[i] = Math.random(); slotAttr[i] = Math.min(NSLOTS - 1, Math.floor(i / PER)); }
+
+  var geo = new THREE.BufferGeometry();
+  var posAttr = new THREE.BufferAttribute(new Float32Array(COUNT * 3), 3);
+  var tgtAttr = new THREE.BufferAttribute(new Float32Array(COUNT * 3), 3);
+  geo.setAttribute('position', posAttr);
+  geo.setAttribute('aTarget', tgtAttr);
+  geo.setAttribute('aRand', new THREE.BufferAttribute(rand, 1));
+  geo.setAttribute('aSlot', new THREE.BufferAttribute(slotAttr, 1));
+
+  /* Vista visible en z=0 para repartir los huecos por toda la pantalla */
+  var halfH = 1, halfW = 1;
+  function placeSlots() {
+    var aspect = camera.aspect;
+    halfH = camera.position.z * Math.tan(camera.fov * Math.PI / 360);
+    halfW = halfH * aspect;
+    // altura deseada de cada silueta: ~un cuarto de la altura visible (las bases miden 4.3 unidades)
+    var size = (0.48 * Math.min(halfH, halfW * 1.25)) / 4.3;
+    for (var i = 0; i < NSLOTS; i++) {
+      var sl = slots[i];
+      sl.x = layout[i][0] * halfW * 0.82;
+      sl.y = layout[i][1] * halfH * 0.68;
+      sl.s = size * (0.85 + ((i * 37) % 10) / 30);   // tamaños ligeramente distintos, fijos por hueco
+      sl.center.set(sl.x, sl.y, 0);
+    }
+  }
+  function writeSlot(arr, i, kind) {
+    var sl = slots[i], src = base[kind], from = i * PER, to = (i === NSLOTS - 1) ? COUNT : from + PER;
+    for (var k = from; k < to; k++) {
+      var j = (k - from) % COUNT;
+      arr[k * 3] = src[j * 3] * sl.s + sl.x;
+      arr[k * 3 + 1] = src[j * 3 + 1] * sl.s + sl.y;
+      arr[k * 3 + 2] = src[j * 3 + 2] * sl.s;
+    }
+  }
+  function scatterSlot(arr, i) {
+    var from = i * PER, to = (i === NSLOTS - 1) ? COUNT : from + PER;
+    for (var k = from; k < to; k++) {
+      var v = new THREE.Vector3(rnd(-1, 1), rnd(-1, 1), rnd(-1, 1)).normalize().multiplyScalar(rnd(4, 9));
+      arr[k * 3] = v.x; arr[k * 3 + 1] = v.y; arr[k * 3 + 2] = v.z;
+    }
+  }
+
+  var progArr = new Float32Array(NSLOTS);
+  var uniforms = {
+    uProg: { value: progArr },
+    uCenter: { value: slots.map(function (sl) { return sl.center; }) },
+    uTime: { value: 0 },
+    uMouse: { value: new THREE.Vector3(99, 99, 0) },
+    uMouseStrength: { value: 0 },
+    uPixelRatio: { value: Math.min(window.devicePixelRatio || 1, 2) },
+    uSize: { value: 2.0 },
+    uColorA: { value: new THREE.Color('#2a2c44') },   // lejos: tinta azulada
+    uColorB: { value: new THREE.Color('#17181f') },   // cerca: tinta
+    uColorHot: { value: new THREE.Color('#b8501c') }  // en tránsito / bajo el ratón
+  };
+
+  var mat = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.NormalBlending,
+    vertexShader: [
+      'attribute vec3 aTarget;',
+      'attribute float aRand, aSlot;',
+      'uniform float uProg[' + NSLOTS + '];',
+      'uniform vec3 uCenter[' + NSLOTS + '];',
+      'uniform float uTime, uMouseStrength, uPixelRatio, uSize;',
+      'uniform vec3 uMouse;',
+      'varying float vDepth, vBulge, vHot, vAlpha;',
+      'void main(){',
+      '  int si = int(aSlot + 0.5);',
+      '  float prog = 0.0; vec3 ctr = vec3(0.0);',
+      '  for (int i = 0; i < ' + NSLOTS + '; i++) { if (i == si) { prog = uProg[i]; ctr = uCenter[i]; } }',
+      '  float d = clamp((prog - aRand*0.35)/0.65, 0.0, 1.0);',
+      '  float e = d*d*(3.0-2.0*d);',
+      '  vec3 pos = mix(position, aTarget, e);',
+      '  float bulge = sin(e*3.14159);',
+      '  pos += normalize(pos - ctr + 0.001) * bulge * (0.2 + aRand*0.5);',
+      '  pos += 0.012*vec3(sin(uTime*0.9 + aRand*47.0), cos(uTime*0.7 + aRand*31.0), sin(uTime*0.8 + aRand*19.0));',
+      '  pos.y += sin(uTime*0.45 + aSlot*1.7) * 0.07;',          // flotan despacio, cada hueco a su ritmo
+      '  pos.x += cos(uTime*0.35 + aSlot*2.3) * 0.05;',
+      '  vec4 wp = modelMatrix * vec4(pos, 1.0);',
+      '  vec3 dm = wp.xyz - uMouse;',
+      '  float dist = length(dm);',
+      '  float f = smoothstep(1.1, 0.0, dist) * uMouseStrength;',
+      '  wp.xyz += normalize(dm + 0.0001) * f * 0.7;',
+      '  vec4 mv = viewMatrix * wp;',
+      '  gl_Position = projectionMatrix * mv;',
+      '  gl_PointSize = uSize * uPixelRatio * (0.5 + aRand) * (1.0 + f*1.6) * (6.0 / -mv.z);',
+      '  vDepth = mv.z; vBulge = bulge; vHot = f; vAlpha = 0.5 + 0.5*aRand;',
+      '}'
+    ].join('\n'),
+    fragmentShader: [
+      'uniform vec3 uColorA, uColorB, uColorHot;',
+      'varying float vDepth, vBulge, vHot, vAlpha;',
+      'void main(){',
+      '  vec2 c = gl_PointCoord - 0.5; float r = length(c);',
+      '  if (r > 0.5) discard;',
+      '  float a = smoothstep(0.5, 0.18, r);',
+      '  vec3 col = mix(uColorA, uColorB, smoothstep(-9.0, -3.5, vDepth));',
+      '  col = mix(col, uColorHot, clamp(vBulge*0.8 + vHot, 0.0, 1.0));',
+      '  gl_FragColor = vec4(col, a * vAlpha);',
+      '}'
+    ].join('\n')
+  });
+
+  var points = new THREE.Points(geo, mat);
+  scene.add(points);
+
+  /* ---------- Morfado por hueco: cada uno cambia a su ritmo, o todos al hacer clic ---------- */
+  var MORPH_MS = 2200;
+  function beginMorph(i, now, kind) {
+    var sl = slots[i];
+    if (sl.morphing) return;
+    sl.kind = kind; sl.morphing = true; sl.start = now;
+    writeSlot(tgtAttr.array, i, kind); tgtAttr.needsUpdate = true;
+  }
+  function endMorph(i, now) {
+    var sl = slots[i];
+    writeSlot(posAttr.array, i, sl.kind); posAttr.needsUpdate = true;
+    progArr[i] = 0; sl.morphing = false;
+    sl.hold = now + rnd(6000, 14000);
+  }
+  function otherKind(k) { return (k + 1 + Math.floor(Math.random() * (kinds.length - 1))) % kinds.length; }
+
+  stage.addEventListener('click', function () {
+    var now = performance.now();
+    for (var i = 0; i < NSLOTS; i++) if (!slots[i].morphing) beginMorph(i, now, otherKind(slots[i].kind));
+  });
+
+  /* ---------- Ratón ---------- */
+  var mouseNDC = new THREE.Vector2(0, 0), ray = new THREE.Raycaster();
+  var plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), hit = new THREE.Vector3();
+  var lastMove = -1e9, hasMouse = false;
+  function onMove(x, y) {
+    mouseNDC.set((x / window.innerWidth) * 2 - 1, -(y / window.innerHeight) * 2 + 1);
+    lastMove = performance.now(); hasMouse = true;
+  }
+  window.addEventListener('pointermove', function (e) { onMove(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('touchmove', function (e) { var t = e.touches[0]; if (t) onMove(t.clientX, t.clientY); }, { passive: true });
+
+  var started = false;
+  function resize() {
+    var w = window.innerWidth, h = window.innerHeight, aspect = w / h;
+    renderer.setSize(w, h, false);
+    camera.aspect = aspect; camera.updateProjectionMatrix();
+    camera.position.z = 6.2;
+    uniforms.uSize.value = aspect < 1 ? 1.8 : 2.0;
+    placeSlots();
+    if (started) {
+      // recolocar todo en su sitio nuevo sin animación
+      for (var i = 0; i < NSLOTS; i++) {
+        writeSlot(posAttr.array, i, slots[i].kind); writeSlot(tgtAttr.array, i, slots[i].kind);
+        progArr[i] = 0; slots[i].morphing = false; slots[i].hold = performance.now() + rnd(3000, 9000);
+      }
+      posAttr.needsUpdate = true; tgtAttr.needsUpdate = true;
+    }
+  }
+  window.addEventListener('resize', resize); resize();
+
+  var camX = 0, camY = 0;
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    var t = now * 0.001;
+    uniforms.uTime.value = t;
+
+    for (var i = 0; i < NSLOTS; i++) {
+      var sl = slots[i];
+      if (sl.morphing) {
+        var p = Math.min(1, (now - sl.start) / MORPH_MS);
+        progArr[i] = p;
+        if (p >= 1) endMorph(i, now);
+      } else if (!reduced && now > sl.hold) {
+        beginMorph(i, now, otherKind(sl.kind));
+      }
+    }
+
+    /* ratón */
+    var strength = hasMouse ? Math.max(0, 1 - (now - lastMove) / 1800) : 0;
+    uniforms.uMouseStrength.value += (strength - uniforms.uMouseStrength.value) * 0.1;
+    ray.setFromCamera(mouseNDC, camera);
+    if (ray.ray.intersectPlane(plane, hit)) uniforms.uMouse.value.lerp(hit, 0.15);
+
+    camX += (mouseNDC.x * 0.25 - camX) * 0.04;
+    camY += (mouseNDC.y * 0.18 - camY) * 0.04;
+    camera.position.x = camX; camera.position.y = camY;
+    camera.lookAt(0, 0, 0);
+
+    renderer.render(scene, camera);
+  }
+
+  /* Entrada: cada hueco llega disperso y se forma escalonado */
+  var now0 = performance.now();
+  for (var i = 0; i < NSLOTS; i++) {
+    scatterSlot(posAttr.array, i);
+    beginMorph(i, now0 + i * 160, slots[i].kind);
+  }
+  posAttr.needsUpdate = true;
+  started = true;
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
